@@ -20,7 +20,7 @@
         path: /tmp/latest.tar.gz
       register: file_downloaded
 
-    - name: Test if file existence
+    - name: Test if latest.tar.gz exists
       assert:
         that:
           file_downloaded.stat.exists
