@@ -1,0 +1,9 @@
+---
+- hosts: all
+  vars:
+    wordpress_uri: https://wordpress.org/latest.tar.gz
+  tasks:
+    - name: Download the file from its URL
+      get_url:
+        url: "{{ wordpress_uri }}"
+        dest: /tmp/latest.tar.gz
