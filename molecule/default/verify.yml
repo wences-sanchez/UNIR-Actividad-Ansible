@@ -1,0 +1,26 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+  vars:
+    wordpress_uri: https://wordpress.org/latest.tar.gz
+  tasks:
+    - name: Example assertion
+      ansible.builtin.assert:
+        that: true
+
+    - name: Test if the URL returns 200
+      uri:
+        url: "{{ wordpress_uri }}"
+
+    - name: Check the downloaded file
+      stat:
+        path: /tmp/latest.tar.gz
+      register: file_downloaded
+
+    - name: Test if file existence
+      assert:
+        that:
+          file_downloaded.stat.exists
